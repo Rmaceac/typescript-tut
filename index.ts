@@ -21,12 +21,14 @@ let books: object[] = [
 let arr: any[] = ['hello', 1, true];
 
 ids.push(6);
-ids.push('7'); // ERROR
+// ids.push('7'); 
+// ERROR: Cannot assign string to array of numbers
 
 // use union types to define arrays with multiple data types
 let person: (string | number | boolean)[] = ['Danny', 1, true];
 person[0] = 100;
-person[1] = {name: 'Brent'}; // ERROR
+// person[1] = {name: 'Brent'}; 
+// ERROR: Cannot reassign variable to an object
 
 // REMEMBER, it is not necessary to initialize a variable with defined data types, as Typescript will infer it/them.
 
@@ -35,7 +37,8 @@ person[1] = {name: 'Brent'}; // ERROR
 // There is a special type of array in Typescript known as a Tuple. Tuples are arrays with fixed sizes and datatypes. They are more strict than regular arrays.
 
 let array: [string, number, boolean] = ['Barb', 6, false];
-array[0] = 100; // ERROR, value at index 0 can ONLY be a string
+// array[0] = 100; 
+// ERROR, value at index 0 can ONLY be a string
 
 
 // Objects can be declared with data types defined and TypeScript will ask you to adhere to them. Notice the syntax for the declaration.
@@ -52,12 +55,14 @@ human = {
   isProgrammer: false
 };
 
-human.isProgrammer = 'Yes'; // ERROR, wrong data type.
+// human.isProgrammer = 'Yes'; 
+// ERROR, wrong data type.
 
-human = {
-  name: 'Cody',
-  location: 'Chilliwack'
-}; // ERROR, variable from the initial declaration is missing.
+// human = {
+//   name: 'Cody',
+//   location: 'Chilliwack'
+// }; 
+// ERROR, variable from the initial declaration is missing.
 
 /* When defining the signature of an object, you will usually use an 'Interface'. This is useful if we want to check that multiple objects have the same specific properties and value types. */
 
@@ -213,3 +218,4 @@ const sayGoodbye = (person: PersonObject) => {
 const form = document.getElementById('signup-form') as HTMLFormElement;
 // console.log(form.method)
 // Output: POST
+
