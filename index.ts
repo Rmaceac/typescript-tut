@@ -215,7 +215,17 @@ const sayGoodbye = (person: PersonObject) => {
 
 /* What if we're trying to select an element by class or id? In this case, we need to use type casting. It allows us to tell TypeScript that we are certain that an element exists and that we know what type it is. */
 
-const form = document.getElementById('signup-form') as HTMLFormElement;
+// const form = document.getElementById('signup-form') as HTMLFormElement;
 // console.log(form.method)
 // Output: POST
 
+/* Typescript has en Event object built in. If we add a submit event listener, TypeScript will give us an error if we call any methods that aren't associated with the Event object. Below I call the target method on the event object, but there's a spelling mistake. TypeScript will notify us of the error. */
+
+// const form = document.getElementById('signup-form') as HTMLFormElement;
+
+// form.addEventListener('submit', (e: Event) => {
+//   e.preventDefault();
+
+//   console.log(e.tarrget);
+// });
+// ERROR: Property 'tarrget' does not exist on type 'Event'. Did you mean 'target'?
