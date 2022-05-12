@@ -202,3 +202,14 @@ const sayGoodbye = (person: PersonObject) => {
 
 /* However we can use the non-null assertion operator(!) to tell the compiler explicitly that an expression has a value other than null or undefined. */
 
+// const link = document.querySelector('a')!;
+// console.log(link.href); 
+// Output: www.freecodecamp.org
+
+/* The type of the link variable didn't require explicit definition because TypeScript (once again) is able to infer that it is a HTMLAnchorElement. */
+
+/* What if we're trying to select an element by class or id? In this case, we need to use type casting. It allows us to tell TypeScript that we are certain that an element exists and that we know what type it is. */
+
+const form = document.getElementById('signup-form') as HTMLFormElement;
+// console.log(form.method)
+// Output: POST
