@@ -127,6 +127,33 @@ var sayGoodbye = function (person) {
 // Output: www.freecodecamp.org
 /* The type of the link variable didn't require explicit definition because TypeScript (once again) is able to infer that it is a HTMLAnchorElement. */
 /* What if we're trying to select an element by class or id? In this case, we need to use type casting. It allows us to tell TypeScript that we are certain that an element exists and that we know what type it is. */
-var form = document.getElementById('signup-form');
+// const form = document.getElementById('signup-form') as HTMLFormElement;
 // console.log(form.method)
 // Output: POST
+/* Typescript has en Event object built in. If we add a submit event listener, TypeScript will give us an error if we call any methods that aren't associated with the Event object. Below I call the target method on the event object, but there's a spelling mistake. TypeScript will notify us of the error. */
+// const form = document.getElementById('signup-form') as HTMLFormElement;
+// form.addEventListener('submit', (e: Event) => {
+//   e.preventDefault();
+//   console.log(e.tarrget);
+// });
+// ERROR: Property 'tarrget' does not exist on type 'Event'. Did you mean 'target'?
+/************************************************************************************/
+// CLASSES
+// We can define all of the different types of data that make up a class.
+var Person = /** @class */ (function () {
+    function Person(n, c, p) {
+        this.name = n;
+        this.isCool = c;
+        this.pets = p;
+    }
+    Person.prototype.sayWhatsUp = function () {
+        return "What's up? My name is " + this.name + " and I have " + this.pets + " pets";
+    };
+    return Person;
+}());
+var personX = new Person('Danny', false, 1);
+// const personY = new Person('Sarah', 'yes', 6);
+// ERROR: Argument of type 'string' is not assignable to the parameter type 'boolean'.
+console.log(personX.sayWhatsUp());
+/* We could then create a people array that only includes objects constructed from the Person class */
+var People = [personX, person2];

@@ -229,3 +229,82 @@ const sayGoodbye = (person: PersonObject) => {
 //   console.log(e.tarrget);
 // });
 // ERROR: Property 'tarrget' does not exist on type 'Event'. Did you mean 'target'?
+
+/************************************************************************************/
+
+// CLASSES
+
+// We can define all of the different types of data that make up a class.
+
+class Person {
+  name: string;
+  isCool: boolean;
+  pets: number;
+
+  constructor(n: string, c: boolean, p: number) {
+    this.name = n;
+    this.isCool = c;
+    this.pets = p;
+  }
+
+  sayWhatsUp() {
+    return `What's up? My name is ${this.name} and I have ${this.pets} pets`;
+  }
+}
+
+const personX = new Person('Danny', false, 1);
+// const personY = new Person('Sarah', 'yes', 6);
+// ERROR: Argument of type 'string' is not assignable to the parameter type 'boolean'.
+
+console.log(personX.sayWhatsUp());
+
+/* We could then create a people array that only includes objects constructed from the Person class */
+
+let People: Person[] = [personX, person2];
+
+/* We can add access modifiers that manage permissions for properties of a class. TypeScript comes with a unique access modifer called 'readonly' */
+
+class AnotherPerson {
+  readonly name: string; // this property is immutable. read-only.
+  private isCool: boolean; // can only access/modify from methods within this class
+  protected email: string; // can access/modify from this class and subclasses
+  public pets: number; // can access/modify from anywhere, including outside the class
+
+  constructor(n: string, c: boolean, e: string, p: number) {
+    this.name = n;
+    this.isCool = c;
+    this.email = e;
+    this.pets = p;
+  }
+    sayMyName() {
+      console.log(`Your not Heisenberg, you're ${this.name}!`);
+    }
+}
+
+const personJ = new AnotherPerson('Danny', false, 'dan@email.com', 1);
+console.log(personJ.name); // this will work fine
+
+// personJ.name = 'James';
+// Error: read only
+
+// console.log(personJ.isCool); Error: private property - only accessible within AnotherPerson class
+// console.log(personJ.email); Error: protected property - only accessible within AnotherPerson class
+// console.log(personJ.pets); // Public property - works fine.
+
+/* To be maximally concise, we should construct our classes with the types and constructor combined. */
+
+class Human {
+  constructor(
+    readonly name: string,
+    private isCool: boolean,
+    protected email: string,
+    public pets: number
+  ) {}
+
+  sayMyName() {
+    console.log(`You're not Heisenberg, you're ${this.name}!`);
+  }
+}
+
+const personK = new Human('Katherine', true, 'kat@email.com', 0);
+console.log(personK.name); // Output: Katherine
