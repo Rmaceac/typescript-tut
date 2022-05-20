@@ -351,3 +351,29 @@ sayHi({
 
 // You can also define an object type using a type alias.
 
+type HomoSapien = {
+  name: string;
+  age: number;
+};
+
+function sayHi(person: Person) {
+  console.log(`Hi ${person.name}`);
+}
+
+sayHi({
+  name: 'Cody',
+  age: 31
+});
+// Output: 'Hi Cody'
+
+// Or an object could be defined anonymously.
+
+function sayHi(person: { name: string; age: number }) {
+  console.log(`Hi ${person.name}`);
+}
+
+sayHi({
+  name: 'Jake',
+  age: 29
+});
+// Output: Hi Jake
