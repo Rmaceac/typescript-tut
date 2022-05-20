@@ -330,3 +330,24 @@ class Programmer extends Human {
     }
 };
 
+/*********************************************************/
+
+// Interfaces define how an object should look.
+
+interface Person {
+  name : string;
+  age: number;
+}
+
+function sayHi(person: Person) {
+  console.log(`Hi ${person.name}`);
+}
+
+sayHi({
+  name: 'John',
+  age: 48,
+});
+// Output: Hi John
+
+// You can also define an object type using a type alias.
+
