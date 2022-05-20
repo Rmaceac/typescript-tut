@@ -1,3 +1,13 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var sport = 'football';
 var id = 5;
 var myself = 'Ryan';
@@ -157,3 +167,53 @@ var personX = new Person('Danny', false, 1);
 console.log(personX.sayWhatsUp());
 /* We could then create a people array that only includes objects constructed from the Person class */
 var People = [personX, person2];
+/* We can add access modifiers that manage permissions for properties of a class. TypeScript comes with a unique access modifer called 'readonly' */
+var AnotherPerson = /** @class */ (function () {
+    function AnotherPerson(n, c, e, p) {
+        this.name = n;
+        this.isCool = c;
+        this.email = e;
+        this.pets = p;
+    }
+    AnotherPerson.prototype.sayMyName = function () {
+        console.log("Your not Heisenberg, you're " + this.name + "!");
+    };
+    return AnotherPerson;
+}());
+;
+var personJ = new AnotherPerson('Danny', false, 'dan@email.com', 1);
+console.log(personJ.name); // this will work fine
+// personJ.name = 'James';
+// Error: read only
+// console.log(personJ.isCool); Error: private property - only accessible within AnotherPerson class
+// console.log(personJ.email); Error: protected property - only accessible within AnotherPerson class
+// console.log(personJ.pets); // Public property - works fine.
+/* To be maximally concise, we should construct our classes with the types and constructor combined. */
+var Human = /** @class */ (function () {
+    function Human(name, isCool, email, pets) {
+        this.name = name;
+        this.isCool = isCool;
+        this.email = email;
+        this.pets = pets;
+    }
+    Human.prototype.sayMyName = function () {
+        console.log("You're not Heisenberg, you're " + this.name + "!");
+    };
+    return Human;
+}());
+var personK = new Human('Katherine', true, 'kat@email.com', 0);
+console.log(personK.name); // Output: Katherine
+// Classes can be extended, just like vanilla Javascript.
+var Programmer = /** @class */ (function (_super) {
+    __extends(Programmer, _super);
+    function Programmer(name, isCool, email, pets, pL) {
+        var _this = 
+        /* The super call must supply all parameters for base (Human) class,
+        as the constructor is not inherited. */
+        _super.call(this, name, isCool, email, pets) || this;
+        _this.programmingLanguages = pL;
+        return _this;
+    }
+    return Programmer;
+}(Human));
+;
