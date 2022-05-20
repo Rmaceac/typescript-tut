@@ -279,7 +279,9 @@ class AnotherPerson {
     sayMyName() {
       console.log(`Your not Heisenberg, you're ${this.name}!`);
     }
-}
+};
+
+
 
 const personJ = new AnotherPerson('Danny', false, 'dan@email.com', 1);
 console.log(personJ.name); // this will work fine
@@ -308,3 +310,22 @@ class Human {
 
 const personK = new Human('Katherine', true, 'kat@email.com', 0);
 console.log(personK.name); // Output: Katherine
+
+// Classes can be extended, just like vanilla Javascript.
+
+class Programmer extends Human {
+  programmingLanguages: string[];
+
+  constructor(
+    name: string,
+    isCool: boolean,
+    email: string,
+    pets: number,
+    pL: string[]
+    ) {
+      /* The super call must supply all parameters for base (Human) class,
+      as the constructor is not inherited. */
+      super(name, isCool, email, pets);
+      this.programmingLanguages = pL
+    }
+};
