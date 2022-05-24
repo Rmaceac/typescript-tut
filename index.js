@@ -217,3 +217,39 @@ var Programmer = /** @class */ (function (_super) {
     return Programmer;
 }(Human));
 ;
+function sayHi(person) {
+    console.log("Hi " + person.name);
+}
+sayHi({
+    name: 'John',
+    age: 48
+});
+function sayHi(person) {
+    console.log("Hi " + person.name);
+}
+sayHi({
+    name: 'Cody',
+    age: 31
+});
+// Output: 'Hi Cody'
+// Or an object could be defined anonymously.
+function sayHi(person) {
+    console.log("Hi " + person.name);
+}
+sayHi({
+    name: 'Jake',
+    age: 29
+});
+var dog = {
+    name: "Bruce",
+    tail: true
+};
+// A type cannot be changed after being defined
+// type Animal = {
+//   name: string
+// }
+// type Animal = {
+//   tail: boolean
+// }
+// ERROR: Duplicate identifier 'Animal'.
+/* As a general rule, Typescript docs recommends using interfaces unless the specific features of types are required */

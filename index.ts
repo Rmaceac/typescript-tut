@@ -377,3 +377,69 @@ sayHi({
   age: 29
 });
 // Output: Hi Jake
+
+/*******************************************************/
+
+/* Interfaces are very similar to type aliases, and in many cases you can use either. The main difference is that interfaces are mutable and can have new properties added town the road. Type aliases cannot. */
+
+// Extending an interface:
+
+// interface Animal {
+//   name: string
+// }
+
+// interface Bear extends Animal {
+//   honey: boolean
+// }
+
+// const bear: Bear = {
+//   name: "Winnie",
+//   honey: true
+// }
+
+// Extending a type via "intersections":
+
+// type Animal = {
+//   name: string
+// }
+
+// type Bear = Animal & {
+//   honey: boolean
+// }
+
+// const bear: Bear = {
+//   name: "Winnie",
+//   honey: true
+// }
+
+// Adding new fields to an existing interface:
+
+interface Animal {
+  name: string
+}
+
+// Re-opening the Animal interface to add a new field
+interface Animal {
+  tail: boolean
+}
+
+const dog: Animal = {
+  name: "Bruce",
+  tail: true
+}
+
+// A type cannot be changed after being defined
+
+// type Animal = {
+//   name: string
+// }
+
+// type Animal = {
+//   tail: boolean
+// }
+
+// ERROR: Duplicate identifier 'Animal'.
+
+/* As a general rule, Typescript docs recommends using interfaces unless the specific features of types are required */
+
+
